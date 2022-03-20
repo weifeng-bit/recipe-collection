@@ -1,0 +1,26 @@
+extends layout
+
+block content
+
+  h1 Cuisine: #{cuisine.name}
+  p This cuisine origins from #{cuisine.origin}.
+  p #{cuisine.property}
+
+  div(style='margin-left:20px;margin-top:20px')
+
+    h4 Recipes
+
+    dl
+      each recipe in cuisine_recipes
+        dt
+          a(href=recipe.url) #{recipe.name}
+        dd #{recipe.description}
+
+      else
+        p This cuisine has no recipes
+
+    hr
+    p
+      a(href=cuisine.url+'/delete') Delete cuisine
+    p
+      a(href=cuisine.url+'/update') Update cuisine

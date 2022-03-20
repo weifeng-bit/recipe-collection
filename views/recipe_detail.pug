@@ -1,0 +1,22 @@
+extends layout
+
+block content
+  h1 Recipe: #{recipe.name}
+
+  p #[strong Cuisine:]
+    each cui in recipe.cuisine
+      a(href=cui.url class='item-list') #{cui.name}
+  p #[strong Description:] #{recipe.description}
+  p #[strong Cooking Time:] #{recipe.cookTime} Minutes
+  p #[strong Ingredients:]
+    each val, index in recipe.ingredient
+      if (val.length === 0)
+        -break
+      if index > 0
+        |,
+      |  #{val}
+  hr
+  p
+    a(href=recipe.url+'/delete') Delete Recipe
+  p
+    a(href=recipe.url+'/update') Update Recipe

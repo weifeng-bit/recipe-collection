@@ -1,0 +1,18 @@
+extends layout
+
+block content
+  h1 #{title}: #{recipe.name}
+  p(style="white-space: pre-line")= recipe.introduction
+
+  if !recipe
+
+    p #[strong This recipe does not exist.]
+
+  else
+    p Do you really want to delete this Recipe?
+
+    form(method='POST' action='')
+      div.form-group
+        input#recipeid.form-control(type='hidden',name='recipeid', required='true', value=recipe._id )
+
+      button.btn.btn-primary(type='submit') Delete

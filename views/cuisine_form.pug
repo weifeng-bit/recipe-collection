@@ -1,0 +1,24 @@
+extends layout
+
+block content
+  h1 #{title}
+
+  form(method='POST' action='')
+    div.form-group
+      label(for='name') Cuisine Name:
+      input#name.form-control(type='text', placeholder='Enter a cuisine' 
+      name='name' value=(undefined===cuisine ? '' : cuisine.name) required='true')
+
+      label(for='origin') Origin Country:
+      input#origin.form-control(type='text', placeholder='Enter a country' 
+      name='origin' value=(undefined===cuisine ? '' : cuisine.origin) required='true')
+
+      label(for='property') Characteristics:
+      textarea#property.form-control.mb-2(type='textarea', placeholder='Add characteristics' 
+      name='property') #{undefined===cuisine ? '' : cuisine.property}
+      button.btn.btn-primary(type='submit') Submit
+
+  if errors
+   ul
+    for error in errors
+     li!= error.msg

@@ -1,0 +1,13 @@
+extends layout
+
+block content
+  h1= title
+
+  ul
+    each cuisine in cuisine_list
+      li
+        a(href=cuisine.url) #{cuisine.name}
+        |  From #{cuisine.origin}
+
+    else
+      li There are no cuisines.

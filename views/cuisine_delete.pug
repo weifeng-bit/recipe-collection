@@ -1,0 +1,28 @@
+extends layout
+
+block content
+  h1 #{title}: #{cuisine.name}
+  p= cuisine.property
+
+  if cuisine_recipes.length
+
+    p #[strong Delete the following recipes before attempting to delete this cuisine.]
+
+    div(style='margin-left:20px;margin-top:20px')
+
+      h4 Recipes
+
+      dl
+      each recipe in cuisine_recipes
+        dt
+          a(href=recipe.url) #{recipe.name}
+        dd #{recipe.introduction}
+
+  else
+    p Do you really want to delete this Cuisine?
+
+    form(method='POST' action='')
+      div.form-group
+        input#cuisineid.form-control(type='hidden',name='cuisineid', required='true', value=cuisine._id )
+
+      button.btn.btn-primary(type='submit') Delete
