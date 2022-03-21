@@ -3,14 +3,15 @@ extends layout
 block content
   h1= title
 
-  form(method='POST' action='')
+  form(method='POST' action='#')
     div.form-group
       label(for='name') Recipe Name:
-      input#name.form-control(type='text', placeholder='Name of recipe' name='name' required='true' value=(undefined===recipe ? '' : recipe.name) )
+      input#name.form-control(type='text', placeholder='Name of recipe' name='name' required='required' value=(undefined===recipe ? '' : recipe.name) )
     
     div.form-group
       label(for='cookTime') Cooking Time:
-      select#cookTime.form-control(type='select', placeholder='Select cooking time' name='cookTime' required='true' )
+      select#cookTime.form-control(name='cookTime' required='required' )
+        option(value="") Choose a duration
         each num in [10, 15, 20, 30, 60, 120]
           if recipe
             option(value=num selected=(num === recipe.cookTime ? 'selected' : false)) #{num} minutes
@@ -19,7 +20,7 @@ block content
     
     div.form-group
       label(for='description') Description:
-      textarea#description.form-control(type='textarea', placeholder='Description' name='description' required='true') #{undefined===recipe ? '' : recipe.description}
+      textarea#description.form-control(placeholder='Description' name='description' required='required') #{undefined===recipe ? '' : recipe.description}
 
     div.form-group
       label Cuisine:
